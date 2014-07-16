@@ -28,10 +28,44 @@ var ticTacToe = (function() {
 		// $('#player1-name').attr('contenteditable','false');
 		// $('#player2-name').attr('contenteditable','false');
 		$('#start').text("New game!")
+		cells = [ NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN ]
 		$('.square').empty()
 		playerTurn = player1.name
 		readout = player1.name + "\'s turn."
+		$('.square').on('click', function(){
+			placeMarker.call(this)
+		})
 		updateReadout(readout)
+	}
+
+	var checkWin = function() {
+		if(														// Check if 3 in a row on:
+			   cells[0] === cells[1] && cells[1] === cells[2]	// Top row
+			|| cells[3] === cells[4] && cells[4] === cells[5]	// Middle row
+			|| cells[6] === cells[7] && cells[7] === cells[8]	// Bottom row
+			|| cells[0] === cells[3] && cells[3] === cells[6]	// First column
+			|| cells[1] === cells[4] && cells[4] === cells[7]	// Second column
+			|| cells[2] === cells[5] && cells[5] === cells[8]	// Third column
+			|| cells[0] === cells[4] && cells[4] === cells[8]	// Diagonal down
+			|| cells[6] === cells[4] && cells[4] === cells[2]	// Diagonal up
+		){
+			updateReadout(playerTurn + " wins!")
+			return true	
+		}
+	}
+
+	var checkTie = function() {
+		var l = cells.length
+		var turnsPlayed = 0
+		while(l--){ if(cells[l]){turnsPlayed++}	}
+		if(turnsPlayed === 9){
+			updateReadout("It's a tie!")
+			return true
+		}
+	}
+
+	var disableBoard = function() {
+		$('.square').off('click')
 	}
 
 	var placeMarker = function () {
@@ -39,19 +73,27 @@ var ticTacToe = (function() {
 			if($(this).html() === ""){
 				cells.splice($(this).data('cell'), 1, "×")
 				$(this).html("×")
-				playerTurn = player2.name
-				updateReadout(player2.name + "\'s turn.")
+				
+				if(checkWin()){ disableBoard() }
+				else if(checkTie()){ disableBoard() }
+				else{
+					playerTurn = player2.name
+					updateReadout(player2.name + "\'s turn.")
+				}
 			}
-			else{
-				updateReadout("You can't go there.")
-			}
+			else{updateReadout("You can't go there.")}
 		}
 		else if(playerTurn === player2.name){
 			if($(this).html() === ""){
 				cells.splice($(this).data('cell'), 1, "○")
 				$(this).html("○")
+
+				if(checkWin()){ disableBoard() }
+				else if(checkTie()){ disableBoard() }
+				else{
 				playerTurn = player1.name
 				updateReadout(player1.name + "\'s turn.")
+				}
 			}
 			else{updateReadout("You can't go there.")}
 		}
@@ -62,7 +104,7 @@ var ticTacToe = (function() {
 	var playerTurn = {}
 	var player1 = new Player()
 	var player2 = new Player()
-	var cells = [ NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN ]
+	var cells = []
 
 
 
@@ -77,11 +119,6 @@ var ticTacToe = (function() {
 
 		$('#start').on('click', function(){
 			startGame()
-		})
-
-		// Want to pull this out to "placeMarker"
-		$('.square').on('click', function(){
-			placeMarker.call(this)
 		})
 	}
 
