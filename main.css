@@ -5,7 +5,7 @@
 	padding-right: 0;
 }
 body{
-	background: #fff;
+	background: white;
 	padding-bottom: 15%
 }
 .board{
@@ -21,7 +21,8 @@ body{
 	margin: auto;
 	text-align: center;
 	line-height: 150px;
-	background: #eee;
+	background: #fff;
+	text-shadow: 5px 5px 10px #aaa;
 }
 
 .container-xs-height {
@@ -59,11 +60,7 @@ body{
 	border-bottom: solid 2px #000;
 }
 .e{
-	border-right: solid 2px #000;
-	border-left: solid 2px #000;
-	border-top: solid 2px #000;
-	border-bottom: solid 2px #000;
-	
+	border: solid 2px #000;
 }
 .f{
 	border-top: solid 2px #000;
@@ -80,3 +77,7 @@ body{
 	
 }
 
+.readout {
+	padding-top: 1em;
+	font-size: .15em;
+}

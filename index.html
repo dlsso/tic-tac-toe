@@ -26,20 +26,20 @@
 	    <div class="collapse navbar-collapse col-xs-8 col-md-offset-1 col-lg-offset-2" id="bs-example-navbar-collapse-1">
 	      <form class="navbar-form navbar-right">
 	        <div class="form-group">
-	          <label contenteditable="true">Player 1</label>
+	          <label contenteditable="true" id="player1-name">Player 1</label>
 	          <select class="form-control" id="player1">
 	          	<option>Human</option>
 	          	<option>Computer</option>
 	          </select>
 	        </div>
 	        <div class="form-group">
-	          <label contenteditable="true">Player 2</label>
+	          <label contenteditable="true" id="player2-name">Player 2</label>
 	          <select class="form-control" id="player2">
 	          	<option>Human</option>
 	          	<option>Computer</option>
 	          </select>
 	        </div>
-	        <button type="submit" class="btn btn-primary">Start game!</button>
+	        <button type="submit" class="btn btn-primary" id="start">Start game!</button>
 	      </form>
 	    </div><!-- /.navbar-collapse -->
 	    </row>
@@ -50,46 +50,38 @@
 		  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 		  	<div class="row row-xs-height top-row">
 		  	  <div class="col-xs-4 col-xs-height a">
-		  	    <div class="square">×
-		  	    </div>
+		  	    <div class="square" data-cell=0></div>
 		  	  </div>
 		  	  <div class="col-xs-4 col-xs-height b">
-		  	    <div class="square">○
-		  	    </div>
+		  	    <div class="square" data-cell=1></div>
 		  	  </div>
 		  	  <div class="col-xs-4 col-xs-height c">
-		  	    <div class="square">×
-		  	    </div>
+		  	    <div class="square" data-cell=2></div>
 		  	  </div>
 		  	</div>
 		  	 <div class="row row-xs-height middle-row">
 		  	   <div class="col-xs-4 col-xs-height d">
-		  	    <div class="square">
-		  	    </div>
+		  	    <div class="square" data-cell=3></div>
 		  	   </div>
 		  	   <div class="col-xs-4 col-xs-height e">
-		  	    <div class="square">○
-		  	    </div>
+		  	    <div class="square" data-cell=4></div>
 		  	   </div>
 		  	   <div class="col-xs-4 col-xs-height f">
-		  	   	<div class="square">
-		  	   	</div>
+		  	   	<div class="square" data-cell=5></div>
 		  	   </div>
 		  	</div>
 		  	<div class="row row-xs-height bottom-row">
 		  	  <div class="col-xs-4 col-xs-height g">
-		  	    <div class="square">
-		  	    </div>
+		  	    <div class="square" data-cell=6></div>
 		  	  </div>
 		  	  <div class="col-xs-4 col-xs-height h">
-		  	    <div class="square">×
-		  	    </div>
+		  	    <div class="square" data-cell=7></div>
 		  	  </div>
 		  	  <div class="col-xs-4 col-xs-height i">
-		  	    <div class="square">
-		  	    </div>
+		  	    <div class="square" data-cell=8></div>
 		  	  </div>
 		  	</div>
+		  	<div class="readout"></div>
 		  </div>
 		</div>
 	</div>
