@@ -1,8 +1,8 @@
 var ticTacToe = (function() {
 	
-	//					//
-	// Setup goes here	//
-	//					//					
+	//==========================================================//
+	//					Setup goes here							//
+	//==========================================================//			
 	var resize = function() {
 		// Set font size to scale with square height
 		$('.board').css('font-size', $('.square').height()*1.06)
@@ -68,50 +68,51 @@ var ticTacToe = (function() {
 		$('.square').off('click')
 	}
 
+	var playerMove = function(player, nextPlayer, marker) {
+		if($(this).html() === ""){
+			cells.splice($(this).data('cell'), 1, marker)
+			$(this).html(marker)
+			
+			if(checkWin()){ disableBoard() }
+			else if(checkTie()){ disableBoard() }
+			else{
+				playerTurn = nextPlayer.name
+				updateReadout(nextPlayer.name + "\'s turn.")
+			}
+		}
+		else{updateReadout("You can't go there.")}
+	}
+
 	var placeMarker = function () {
 		if(playerTurn === player1.name){
-			if($(this).html() === ""){
-				cells.splice($(this).data('cell'), 1, "×")
-				$(this).html("×")
-				
-				if(checkWin()){ disableBoard() }
-				else if(checkTie()){ disableBoard() }
-				else{
-					playerTurn = player2.name
-					updateReadout(player2.name + "\'s turn.")
-				}
-			}
-			else{updateReadout("You can't go there.")}
+			playerMove.call(this, player1, player2, "×")
 		}
-		else if(playerTurn === player2.name){
-			if($(this).html() === ""){
-				cells.splice($(this).data('cell'), 1, "○")
-				$(this).html("○")
 
-				if(checkWin()){ disableBoard() }
-				else if(checkTie()){ disableBoard() }
-				else{
-				playerTurn = player1.name
-				updateReadout(player1.name + "\'s turn.")
-				}
-			}
-			else{updateReadout("You can't go there.")}
+		else if(playerTurn === player2.name){
+			playerMove.call(this, player2, player1, "○")
 		}
+
 		else{updateReadout("Start a game first!")}
 	}
 
+
+	//	Declare Variables
+	//	=================
 	var readout = "Set player names and types and press start!"
 	var playerTurn = {}
 	var player1 = new Player()
 	var player2 = new Player()
 	var cells = []
 
+	var easyComputer = function() {
+
+	}
 
 
 
-	//====================
-	// Run things in here
-	//====================
+	//==========================================================//
+	//					Run things in here						//
+	//==========================================================//
 	var init = function() {
 		resize();	// Runs size adjustment when page loads
 		$(window).on('resize', resize) // Runs again whenever page is resized
