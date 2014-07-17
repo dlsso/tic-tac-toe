@@ -11,6 +11,25 @@ var ticTacToe = (function() {
 		$('.square').css('line-height', 0.75*parseInt($('.board').css('font-size'))+'px')
 	}
 
+
+	// Updates readout when passed a string
+	var disableMultipleComputers = function() {
+		$('select').on('change', function(){
+			if($('#player1').find(':selected')[0].text !== "Human"){
+				$('#player2 option:not(:first-child)').prop("disabled",true)
+			}
+			else{
+				$('#player2 option').prop("disabled",false)
+			}
+			if($('#player2').find(':selected')[0].text !== "Human"){
+				$('#player1 option:not(:first-child)').prop("disabled",true)
+			}
+			else{
+				$('#player1 option').prop("disabled",false)
+			}
+		})
+	}
+
 	// Updates readout when passed a string
 	var updateReadout = function(string) {
 		$('.readout').empty().append(string)
@@ -37,10 +56,7 @@ var ticTacToe = (function() {
 	var Computer = function() {
 
 		this.markChoice = function(choice, marker){
-			console.log("choice was "+choice)
 			cells.splice( choice, 1, marker )
-			console.log(cells)
-
 			$('.square[data-cell='+choice+']').html(marker)
 		}
 
@@ -65,7 +81,6 @@ var ticTacToe = (function() {
 		this.choose = function(board) {
 			var choiceOrder = [4, 0, 8, 2, 6, 1, 5, 3, 7]
 			for (var i = 0; i < choiceOrder.length; i++) {
-				console.log(choiceOrder[i])
 				if(!cells[choiceOrder[i]]){ return choiceOrder[i]}
 			}
 		}
@@ -141,8 +156,6 @@ var ticTacToe = (function() {
 		if($(this).html() === ""){
 			cells.splice($(this).data('cell'), 1, playerMarker)
 			$(this).html(playerMarker)
-			console.log(cells)
-			
 			if(checkWin()){ disableBoard() }
 			else if(checkTie()){ disableBoard() }
 			else{
@@ -163,7 +176,7 @@ var ticTacToe = (function() {
 			playerMove.call(this, player2, player1, player2.marker)
 		}
 
-		else{updateReadout("Start a game first!")}
+		else{ console.log("Error: playerTurn not set properly.") }
 	}
 
 
@@ -185,7 +198,7 @@ var ticTacToe = (function() {
 		resize();	// Runs size adjustment when page loads
 		$(window).on('resize', resize) // Runs again whenever page is resized
 		updateReadout(readout)	//	Loads starting readout
-
+		disableMultipleComputers()
 		$('#start').on('click', function(){
 			startGame()
 		})

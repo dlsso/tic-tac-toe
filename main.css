@@ -1,18 +1,18 @@
-.form-group{
+.form-group {
 	padding-right: 2em;
 }
-.navbar-brand{
+.navbar-brand {
 	padding-right: 0;
 }
-body{
+
+body {
 	background: white;
 	padding-bottom: 15%
 }
-.board{
+.board {
 	font-size: 200px;
 }
-
-.square{
+.square {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -23,58 +23,35 @@ body{
 	line-height: 150px;
 	background: #fff;
 	text-shadow: 5px 5px 10px #aaa;
+	overflow: hidden;
 }
 
+/* Display as table and percent padding needed to make cells scale correctly. */
 .container-xs-height {
     display:table;
 }
-
 .row-xs-height {
     display:table-row;
 }
-
 .col-xs-height {
     display:table-cell;
     float:none;
 }
-
-.col-xs-4{
+.col-xs-4 {
 	width: 33.3%;
     padding-bottom: 33.3%;
-
 }
 
-.a{
-
-}
-.b{
+.cell1, .cell7 {
 	border-right: solid 2px #000;
-	border-left: solid 2px #000;
-	
+	border-left: solid 2px #000;	
 }
-.c{
-	
-}
-.d{
+.cell3, .cell5 {
 	border-top: solid 2px #000;
 	border-bottom: solid 2px #000;
 }
-.e{
+.cell4 {
 	border: solid 2px #000;
-}
-.f{
-	border-top: solid 2px #000;
-	border-bottom: solid 2px #000;
-}
-.g{
-	
-}
-.h{
-	border-right: solid 2px #000;
-	border-left: solid 2px #000;
-}
-.i{
-	
 }
 
 .readout {
