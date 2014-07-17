@@ -98,6 +98,9 @@ var ticTacToe = (function() {
 		$('.square').empty()
 		playerTurn = player1.name
 		readout = player1.name + "\'s turn."
+		if(player1.type !== "Human"){
+			player1.ai.move(cells, player1.marker, player2)
+		}
 		$('.square').on('click', function(){
 			placeMarker.call(this)
 		})
