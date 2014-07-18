@@ -38,35 +38,32 @@ var ticTacToe = (function() {
 	var Player = function(name, type, ai, marker) {
 		this.name = name
 		this.type = type
-
+		this.marker = marker
 		if(ai === "easyComputer"){
 			this.ai = easyComputer
 		}
 		else if(ai === "hardComputer"){
 			this.ai = hardComputer
 		}
-
-		this.marker = marker
 	}
 
 	//	AI constructor
 	//	================
 	var Computer = function() {
 
-		this.move = function(board, marker, nextPlayer, nextPlayerMarker){
-
-			this.markChoice(this.choose(board, marker, nextPlayerMarker), marker)
-			if(checkWin()){ disableBoard() }
-			else if(checkTie()){ disableBoard() }
-			else{
-				playerTurn = nextPlayer.name
-				updateReadout(playerTurn + "\'s turn.")
-			}
-		}
 	}
 	Computer.prototype.markChoice = function(choice, marker){
 		cells.splice( choice, 1, marker )
 		$('.square[data-cell='+choice+']').html(marker)
+	}
+	Computer.prototype.move = function(board, marker, nextPlayer, nextPlayerMarker){
+		this.markChoice(this.choose(board, marker, nextPlayerMarker), marker)
+		if(checkWin()){ disableBoard() }
+		else if(checkTie()){ disableBoard() }
+		else{
+			playerTurn = nextPlayer.name
+			updateReadout(playerTurn + "\'s turn.")
+		}
 	}
 
 
@@ -170,16 +167,6 @@ var ticTacToe = (function() {
 			return score
 		}
 
-
-		// // Easy computer choosing method. Delete when hard AI is working
-		// this.choose = function() {
-		// 	var choiceOrder = [4, 0, 8, 2, 6, 1, 5, 3, 7]
-		// 	for (var i = 0; i < choiceOrder.length; i++) {
-		// 		if(!cells[choiceOrder[i]]){ return choiceOrder[i]}
-		// 	}
-		// }
-
-		// Hard computer choosing method. Has board, marker, nextPlayer, nextPlayerMarker because it's called in move.
 		this.choose = function(board, aiMarker, oppMarker) {
 			if(board.indexOf("×") === -1){
 				var choice = 0
@@ -189,9 +176,8 @@ var ticTacToe = (function() {
 				else if(corner === 3){ choice = 6}
 				else if(corner === 4){ choice = 8}
 				return choice
-
 			}
-			return minimax(3, aiMarker, board, aiMarker, oppMarker)[1]
+			return minimax(4, aiMarker, board, aiMarker, oppMarker)[1]
 		}
 	}
 	HardComputer.prototype = new Computer()
@@ -203,8 +189,6 @@ var ticTacToe = (function() {
 		disableBoard()
 		player1 = new Player($('#player1-name').html(), $('#player1').val(), $('#player1').find(':selected').data('ai'), "×")
 		player2 = new Player($('#player2-name').html(), $('#player2').val(), $('#player2').find(':selected').data('ai'), "○")
-		// $('#player1-name').attr('contenteditable','false');
-		// $('#player2-name').attr('contenteditable','false');
 		$('#start').text("New game!")
 		cells = [ NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN ]
 		$('.square').empty()

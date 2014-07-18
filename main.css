@@ -5,6 +5,10 @@
 	padding-right: 0;
 }
 
+.navbar-default {
+	background: #def;
+}
+
 body {
 	background: white;
 	padding-bottom: 15%
@@ -23,9 +27,10 @@ body {
 	margin: auto;
 	text-align: center;
 	line-height: 150px;
-	background: #fff;
-	text-shadow: 5px 5px 10px #aaa;
+	text-shadow: 4px 4px 10px #888;
 	overflow: hidden;
+	/*color: #339;*/
+	/*color: #a11;*/
 }
 
 /* Display as table and percent padding needed to make cells scale correctly. */
@@ -45,15 +50,15 @@ body {
 }
 
 .cell1, .cell7 {
-	border-right: solid 2px #000;
-	border-left: solid 2px #000;	
+	border-right: solid 2px #999;
+	border-left: solid 2px #999;	
 }
 .cell3, .cell5 {
-	border-top: solid 2px #000;
-	border-bottom: solid 2px #000;
+	border-top: solid 2px #999;
+	border-bottom: solid 2px #999;
 }
 .cell4 {
-	border: solid 2px #000;
+	border: solid 2px #999;
 }
 
 .readout {
