@@ -295,8 +295,9 @@ var ticTacToe = (function() {
 // When the page loads
 $(document).on('ready', function() {
 	ticTacToe.init();
-	$('#start').on('click', function(){
+	$('#start').on('click', function (e) {
 		ticTacToe.start()
+		e.preventDefault()
 	})
 });
 
