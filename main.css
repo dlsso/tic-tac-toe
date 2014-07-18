@@ -11,6 +11,8 @@ body {
 }
 .board {
 	font-size: 200px;
+	-webkit-user-select: none;
+	-moz-user-select:none;
 }
 .square {
 	position: absolute;
