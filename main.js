@@ -98,7 +98,7 @@ var ticTacToe = (function() {
 			}
 			else{
 				for (var i = 0; i < nextMoves.length; i++) {	// For each move in nextMoves I want to put player marker in board
-					board.splice( nextMoves[i], 1, player )		// This is currently splicing x into list of possible choices
+					board.splice( nextMoves[i], 1, player )		
 					if(player === aiMarker) {	// Computer will be maximizing
 						currentScore = minimax(depth - 1, oppMarker, board, aiMarker, oppMarker)[0]		//minimax[0] is the return value bestScore of minimax
 						if(currentScore > bestScore) {
@@ -196,6 +196,7 @@ var ticTacToe = (function() {
 		readout = player1.name + "\'s turn."
 		if(player1.type !== "Human"){
 			player1.ai.move(cells, player1.marker, player2, player2.marker)
+			updateReadout(player2.name + "\'s turn.")
 		}
 		$('.square').on('click', function(){
 			placeMarker.call(this)
@@ -280,7 +281,7 @@ var ticTacToe = (function() {
 		resize();	// Runs size adjustment when page loads
 		$(window).on('resize', resize) // Runs again whenever page is resized
 		updateReadout(readout)	//	Loads starting readout
-		disableMultipleComputers()
+		disableMultipleComputers()	// Prevents user from selecting AI vs AI
 
 	}
 
